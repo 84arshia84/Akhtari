@@ -64,3 +64,34 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   
+
+
+
+
+1-Install composer package
+
+2-Getting the Laravel project from Git
+
+3-The name of my Laravel project is Management Panel
+
+
+4-This Laravel project is for managing sales
+
+5-In this project we have access to
+orders - products - invoices - customers and sales opportunities
+
+6-How to use the project?
+First of all, we enter
+the login page and if we have not
+registered, we register first and then
+enter the
+management panel.
+
+
+7-
+
+
+
+
+
