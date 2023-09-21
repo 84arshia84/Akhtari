@@ -19,6 +19,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\DatabaseNotificationCollection;
+use Spatie\Permission\Traits\HasPermissions;
 
 /**
  * App\Models\User
