@@ -24,16 +24,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::prefix('dashboard')->middleware('auth:sanctum')->group(function () {
-    Route::delete('delete_user', [UserController::class, 'delete_user'])->name('delete_user');
+    Route::delete('delete_user/{id}', [UserController::class, 'delete_user'])->name('delete_user');
     Route::get('all_users', [UserController::class, 'all_users'])->name('all_users');
     Route::post('find_user', [UserController::class, 'find_user'])->name('find_user');
     Route::put('update_user/{id}', [UserController::class, 'update_user'])->name('update_user');
     Route::post('add_user',[UserController::class,'add_user'])->name('add_user');
 });
-
-Route::delete('delete_order',[OrderController::class,'delete_order'])->name('delete_order');
-
 
 Route::post('register_user', [RegisterController::class, 'register_user'])->name('register_user');
 Route::post('login', LoginController::class)->name('login');
@@ -49,3 +47,31 @@ Route::delete('delete_product/{id}',[ProductController::class,'delete_product'])
 Route::post('all_product',[ProductController::class,'all_product'])->name('all_product');
 Route::post('find_product',[ProductController::class,'find_product'])->name('find_product');
 Route::put('update_product/{id}',[ProductController::class,'update_product'])->name('update_product');
+
+
+
+
+
+
+
+
+
+
+Route::post('add_order',[OrderController::class,'add_order'])->name('add_order');
+Route::get('all_order',[OrderController::class,'all_order'])->name('all_order');
+Route::delete('delete_order',[OrderController::class,'delete_order'])->name('delete_order');
+Route::post('find_order',[OrderController::class,'find_order'])->name('find_order');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
