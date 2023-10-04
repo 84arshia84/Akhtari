@@ -8,34 +8,41 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-    public function roles()
+    public function all_roles()
     {
-        $roles=Role::get();
-        return view('role.list',compact('roles'));
+        $roles = Role::get();
+        return response()->json($roles);
     }
-    public function getCreateRole()
+    public function add_roles(Request $request)
     {
-        return view('role.create');
+        Role::create(['name' => $request->name]);
+        return response()->json('Role Created');
     }
-    public function postCreateRole(Request $request)
+    public function all_permissions()
     {
-        Role::create(['name'=>$request->name]);
-        return redirect()->back()->with(['message'=>'Role Created']);
+        $permissions = Permission::get();
+        return response()->json($permissions);
     }
-    public function getCreatePermission()
+    public function add_Permission(Request $request)
     {
-        return view('permission.create');
+        Permission::create(['name' => $request->name]);
+        return response()->json('Permission Created');
     }
-    public function postCreatePermission(Request$request)
+    public function getAssignRole()
     {
-        Permission::create(['name'=>$request->name]);
-        return redirect()->back()->with(['message'=>'Permission Create']);
+        $roles = Role::get();
+        $permissions = Permission::get();
+        return response()->json([$roles,$permissions]);
     }
-    public function Permission()
-    {
-        $permission=Permission::get();
-        return view('permission.list',compact('permission'));
 
+    public function postAssignRole(Request $request)
+    {
+        $role = Role::findById($request->role_id);
+        $permission = Permission::findById($request->permission_id);
+
+        $role->givePermissionTo($permission);
+        return response()->json('successfully role assigned');
+        //$role->syncpermissions with checkbox
     }
 
 }
