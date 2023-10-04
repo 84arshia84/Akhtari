@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,53 +26,42 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('dashboard')->middleware('auth:sanctum')->group(function () {
+Route::prefix('users')->middleware('auth:sanctum')->group(function () {
     Route::delete('delete_user/{id}', [UserController::class, 'delete_user'])->name('delete_user');
     Route::get('all_users', [UserController::class, 'all_users'])->name('all_users');
     Route::post('find_user', [UserController::class, 'find_user'])->name('find_user');
     Route::put('update_user/{id}', [UserController::class, 'update_user'])->name('update_user');
     Route::post('add_user',[UserController::class,'add_user'])->name('add_user');
 });
-
+Route::prefix('auth')->group(function (){
 Route::post('register_user', [RegisterController::class, 'register_user'])->name('register_user');
 Route::post('login', LoginController::class)->name('login');
 Route::post('logout', LogoutController::class)->name('logout')->middleware('auth:sanctum');
+});
 
-
-
-
-
-
+Route::prefix('product')->group(function (){
 Route::post('add_product',[ProductController::class,'add_product'])->name('add_product');
 Route::delete('delete_product/{id}',[ProductController::class,'delete_product'])->name('delete_product');
 Route::post('all_product',[ProductController::class,'all_product'])->name('all_product');
 Route::post('find_product',[ProductController::class,'find_product'])->name('find_product');
 Route::put('update_product/{id}',[ProductController::class,'update_product'])->name('update_product');
+});
 
-
-
-
-
-
-
-
-
-
+Route::prefix('roles')->group(function (){
 Route::post('add_order',[OrderController::class,'add_order'])->name('add_order');
 Route::get('all_order',[OrderController::class,'all_order'])->name('all_order');
 Route::delete('delete_order',[OrderController::class,'delete_order'])->name('delete_order');
 Route::post('find_order',[OrderController::class,'find_order'])->name('find_order');
+});
 
+Route::prefix('roles')->group(function (){
+    Route::get('all_roles',[RoleController::class, 'all_roles'])->name('all_roles');
+    Route::get('add_roles',[RoleController::class, 'add_roles'])->name('add_roles');
+    Route::get('getAssignRole',[RoleController::class,'getAssignRole'])->name('getAssignRole');
+    Route::post('postAssignRole',[RoleController::class,'postAssignRole'])->name('postAssignRole');
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
+Route::prefix('permissions')->group(function (){
+    Route::get('all_permission',[RoleController::class, 'all_permission'])->name('all_permission');
+    Route::get('add_permissions',[RoleController::class, 'add_permissions'])->name('add_permissions');
+});
