@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,7 @@ class UserController extends Controller
 
     public function add_user(Request $request)
     {
+        SendEmail::dispatch();
             $request->validate([
                 'name' => 'required|string|max:255',
                 'family' => 'required|string|max:255',
@@ -43,7 +45,7 @@ class UserController extends Controller
 
     public function find_user(Request $request)
     {
-        $user = User::find($request->id);
+        $user = User::with('orders')->find($request->id);
         return response()->json([
             'find_user' => $user
         ]);
@@ -58,4 +60,6 @@ class UserController extends Controller
             'update_user'
         ]);
     }
+
+
 }
