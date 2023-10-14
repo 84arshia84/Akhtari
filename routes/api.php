@@ -32,11 +32,13 @@ Route::prefix('users')->middleware('auth:sanctum')->group(function () {
     Route::post('find_user', [UserController::class, 'find_user'])->name('find_user');
     Route::put('update_user/{id}', [UserController::class, 'update_user'])->name('update_user');
     Route::post('add_user',[UserController::class,'add_user'])->name('add_user');
+
 });
 Route::prefix('auth')->group(function (){
 Route::post('register_user', [RegisterController::class, 'register_user'])->name('register_user');
 Route::post('login', LoginController::class)->name('login');
 Route::post('logout', LogoutController::class)->name('logout')->middleware('auth:sanctum');
+
 });
 
 Route::prefix('product')->group(function (){
@@ -59,6 +61,7 @@ Route::prefix('roles')->group(function (){
     Route::post('add_roles',[RoleController::class, 'add_roles'])->name('add_roles');
 //    Route::get('getAssignRole',[RoleController::class,'getAssignRole'])->name('getAssignRole');
     Route::post('postAssignRole',[RoleController::class,'postAssignRole'])->name('postAssignRole');
+//    Route::post('userAssignRole/{id}',[RoleController::class,'userAssignRole'])->name('userAssignRole');
 });
 
 Route::prefix('permissions')->group(function (){

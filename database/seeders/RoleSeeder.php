@@ -18,19 +18,19 @@ class RoleSeeder extends Seeder
         $customer = Role::create(['name' => 'customer']);
 
 
-        $superAdmin->givPermissionTo(['user.delete', 'users.all', 'user.find', 'user.update', 'user.add', 'login'
+        $superAdmin->givePermissionTo(['user.delete', 'users.all', 'user.find', 'user.update', 'user.add', 'login'
             , 'register_user', 'logout', 'product.add', 'product.delete', 'product.all', 'product.find', 'product.update'
             , 'order.add', 'order.all', 'order.delete', 'order.find', 'roles.all', 'roles.add', 'postAssignRole', 'permissions'
             , 'permission.all', 'permissions.add',
         ]);
 
-        $Admin->givPermissionTo(['users.all', 'user.find', 'login'
+        $Admin->givePermissionTo(['users.all', 'user.find', 'login'
             , 'register_user', 'logout', 'product.add', 'product.delete', 'product.all', 'product.find', 'product.update'
             , 'order.add', 'order.all', 'order.delete', 'order.find', 'roles.all',
         ]);
 
 
-        $customer->givPermissionTo(['login', 'register_user', 'logout', 'product.add', 'product.all', 'product.find'
+        $customer->givePermissionTo(['login', 'register_user', 'logout', 'product.add', 'product.all', 'product.find'
 
         ]);
     }

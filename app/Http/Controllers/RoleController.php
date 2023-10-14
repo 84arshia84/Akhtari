@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
@@ -45,5 +46,16 @@ class RoleController extends Controller
         return response()->json('successfully role assigned');
         //$role->syncpermissions with checkbox
     }
+//    public function userAssignRole(Request $request,$id)
+//    {
+//        $user = User::find($id);
+//        Role::findByName($request->role);
+//        $user-> assignRole($request);
+//        return response()->json([
+//           $user
+//        ]);
+
+
+
 
 }

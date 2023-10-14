@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\SendEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -22,8 +23,11 @@ class UserController extends Controller
                 'password' => 'required|string|min:6'
             ]);
         $user = User::create($request->all());
+        $role = Role::findByName($request->rol);
+        $user->assignRole($role);
         return response()->json([
             'add_user' => $user,
+
         ]);
     }
 
