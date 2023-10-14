@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\MailRegister;
 use App\Models\User;
 use Doctrine\Common\Lexer\Token;
 use Illuminate\Http\Request;
@@ -22,9 +23,13 @@ class RegisterController extends Controller
         ]);
         $user = User::create($request->all());
         $token = $user->createToken('api_token')->plainTextToken;
+
+        dispatch(new MailRegister($user));
         return response()->json([
             'user' => $user,
             'token' => $token,
         ]);
+
+
     }
 }

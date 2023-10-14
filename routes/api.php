@@ -27,7 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('users')->middleware('auth:sanctum')->group(function () {
-    Route::delete('delete_user/{id}', [UserController::class, 'delete_user'])->name('delete_user');
+    Route::delete('delete_user/{id}', [UserController::class, 'delete_user'])->middleware('delete_user')->name('delete_user');
     Route::get('all_users', [UserController::class, 'all_users'])->name('all_users');
     Route::post('find_user', [UserController::class, 'find_user'])->name('find_user');
     Route::put('update_user/{id}', [UserController::class, 'update_user'])->name('update_user');
@@ -47,7 +47,7 @@ Route::post('find_product',[ProductController::class,'find_product'])->name('fin
 Route::put('update_product/{id}',[ProductController::class,'update_product'])->name('update_product');
 });
 
-Route::prefix('roles')->group(function (){
+Route::prefix('order')->group(function (){
 Route::post('add_order',[OrderController::class,'add_order'])->name('add_order');
 Route::get('all_order',[OrderController::class,'all_order'])->name('all_order');
 Route::delete('delete_order',[OrderController::class,'delete_order'])->name('delete_order');
@@ -56,12 +56,13 @@ Route::post('find_order',[OrderController::class,'find_order'])->name('find_orde
 
 Route::prefix('roles')->group(function (){
     Route::get('all_roles',[RoleController::class, 'all_roles'])->name('all_roles');
-    Route::get('add_roles',[RoleController::class, 'add_roles'])->name('add_roles');
-    Route::get('getAssignRole',[RoleController::class,'getAssignRole'])->name('getAssignRole');
+    Route::post('add_roles',[RoleController::class, 'add_roles'])->name('add_roles');
+//    Route::get('getAssignRole',[RoleController::class,'getAssignRole'])->name('getAssignRole');
     Route::post('postAssignRole',[RoleController::class,'postAssignRole'])->name('postAssignRole');
 });
 
 Route::prefix('permissions')->group(function (){
     Route::get('all_permission',[RoleController::class, 'all_permission'])->name('all_permission');
-    Route::get('add_permissions',[RoleController::class, 'add_permissions'])->name('add_permissions');
+    Route::post('add_permissions',[RoleController::class, 'add_permissions'])->name('add_permissions');
+
 });
