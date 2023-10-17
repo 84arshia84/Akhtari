@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\MailOrder;
 use App\Jobs\SendEmail;
 use App\Models\Order;
 use App\Models\User;
@@ -18,13 +19,15 @@ class OrderController extends Controller
         $request->validate([ 'user_id' => 'required|exists:users,id',
              'product_id' => 'required|exists:products,id']);
                 $order = Order::create($request->all());
+//        dispatch(new MailOrder($order));
+        MailOrder::dispatch($order);
             return response()->json([
                 'add_order' => $order
             ]);
 //        }else{
 //            return response()->json(['data'=>'user_not_fond']);
 //        }
-
+//        dispatch(new MailOrder($order));
     }
 
 
