@@ -2,34 +2,35 @@
 
 namespace App\Mail;
 
-use App\Models\User;
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-class RegisterMail extends Mailable
+
+class OrderMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-
-    public User $user;
-    public function __construct(User $user)
+    public $order;
+public function __construct($order)
     {
-        $this->user=$user;
+        $this->order=$order;
     }
+
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
         return new Envelope(
-            to: $this->user->email,
-            subject: 'Register successfully.',
+            to:$this->order->user->email,
+            subject: 'Order Mail',
         );
     }
 
@@ -39,7 +40,7 @@ class RegisterMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'Mail.register',
+            view: 'Mail.orderّ',
         );
     }
 
