@@ -27,7 +27,7 @@ class AdminSeeder extends Seeder
             'family' => 'Akhtari',
 
         ]);
-
+        $user->assignRole('superAdmin');
 //        $permissions=Permission::all();
 
 //        $user->givePermissionTo(['delete_user',]);
