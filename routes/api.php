@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FactorController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
@@ -77,4 +78,8 @@ Route::get('all_factor', [FactorController::class, 'all_factor'])->middleware('p
 Route::get('find_factor', [FactorController::class, 'find_factor'])->middleware('permission:factor_show')->name('find_factor');
 Route::put('update_factor', [FactorController::class, 'update_factor'])->middleware('permission:factor.update')->name('update_factor');
 Route::delete('delete_Factor', [FactorController::class, 'delete_Factor'])->middleware('permission:factor.delete')->name('delete_Factor');
+});
+
+Route::prefix('maps')->group(function (){
+   Route::post('mapss',[MapController::class,'mapss'])->name('mapss');
 });
