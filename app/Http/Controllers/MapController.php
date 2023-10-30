@@ -32,6 +32,17 @@ class MapController extends Controller
                 'content' => $data
             ]
         ]));
+        $change = json_decode($result, true);
+
+//        $distance = $change['paths'][0]['distance'];
+//        $tim=$change['paths'][0]['tim'];
+//        dd($change);
+//        if ($distance<5){
+//            $tim
+//        }
         return response(json_decode($result, true));
 
-    }}
+    }
+
+}
+
