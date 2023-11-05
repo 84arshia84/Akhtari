@@ -9,6 +9,7 @@ use App\Http\Controllers\MapController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,9 +38,9 @@ Route::prefix('users')->middleware('auth:sanctum')->group(function () {
 
 });
 Route::prefix('auth')->group(function (){
-Route::post('register_user', [RegisterController::class, 'register_user'])->middleware('permission:register_user')->name('register_user');
-Route::post('login', LoginController::class)->middleware('permission:login')->name('login');
-Route::post('logout', LogoutController::class)->name('logout')->middleware(['auth:sanctum','permission:logout']);
+Route::post('register_user', [RegisterController::class, 'register_user'])->name('register_user');
+Route::post('login', LoginController::class)->name('login');
+Route::post('logout', LogoutController::class)->name('logout');
 
 });
 
@@ -83,3 +84,12 @@ Route::delete('delete_Factor', [FactorController::class, 'delete_Factor'])->midd
 Route::prefix('maps')->group(function (){
    Route::post('mapss',[MapController::class,'mapss'])->name('mapss');
 });
+
+Route::prefix('stores')->group(function (){
+    Route::post('add_store', [StoreController::class, 'add_store'])->name('add_store');
+    Route::get('all_store', [StoreController::class, 'all_store'])->name('all_store');
+    Route::post('find_store', [StoreController::class, 'find_store'])->name('find_store');
+    Route::put('update_store/{id}', [StoreController::class, 'update_store'])->name('update_store');
+    Route::delete('delete_store/{id}', [StoreController::class, 'delete_store'])->name('delete_store');
+});
+
