@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Auth\AddProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -93,3 +94,11 @@ Route::prefix('stores')->group(function (){
     Route::delete('delete_store/{id}', [StoreController::class, 'delete_store'])->name('delete_store');
 });
 
+Route::prefix('addresses')->group(function (){
+    Route::post('add_address', [AddressController::class, 'add_address'])->name('add_address');
+    Route::get('all_address', [AddressController::class, 'all_address'])->name('all_address');
+    Route::post('find_address', [AddressController::class, 'find_address'])->name('find_address');
+    Route::put('update_address/{id}', [AddressController::class, 'update_address'])->name('update_address');
+    Route::delete('delete_address/{id}', [AddressController::class, 'delete_address'])->name('delete_address');
+
+});
