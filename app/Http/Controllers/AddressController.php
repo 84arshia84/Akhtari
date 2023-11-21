@@ -14,7 +14,14 @@ class AddressController extends Controller
             'lat'=> 'required|numeric',
             'long'=>'required|numeric',
             'address'=>'required|string|max:225',
-            'name'=>'required|string|max:225'
+            'name'=>'required|string|max:225',
+            'City'=>'required|string|max:225',
+            'district'=>'required|string|max:225',// ناحیه
+            'Plaque'=>'required|string|max:225',
+            'the unit '=>'required|string|max:225',
+            'Recipients name'=>'required|string|max:225',
+            'Recipients last name'=>'required|string|max:225',
+            'phone number'=>'required|string|max:225'
         ]);
         $address=Address::create($request->all());
         return response()->json([
